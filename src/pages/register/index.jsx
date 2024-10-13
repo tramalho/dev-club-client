@@ -1,23 +1,38 @@
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 function Register() {
+	const nameRef = useRef();
+	const emailRef = useRef();
+	const passwordRef = useRef();
+
+	function handleSubmit(e) {
+		console.log(nameRef.current.value);
+		console.log(emailRef.current.value);
+		console.log(passwordRef.current.value);
+		e.preventDefault();
+	}
+
 	return (
 		<div className="max-w-md mx-auto mt-10 bg-white p-8 boder border-gray-300 rounded-lg shadow-lg">
 			<h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
 				Register
 			</h2>
-			<form className="flex flex-col gap-5">
+			<form className="flex flex-col gap-5" onSubmit={handleSubmit}>
 				<input
+					ref={nameRef}
 					type="text"
 					placeholder="Username"
 					className="w-full px-3 py-2 border  border-gray-300 rounded-md focus:outline-none"
 				/>
 				<input
+					ref={emailRef}
 					type="email"
 					placeholder="Email"
 					className="w-full px-3 py-2 border  border-gray-300 rounded-md focus:outline-none"
 				/>
 				<input
+					ref={passwordRef}
 					type="password"
 					placeholder="Password"
 					className="w-full px-3 py-2 border  border-gray-300 rounded-md focus:outline-none"

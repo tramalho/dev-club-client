@@ -1,16 +1,28 @@
 import { Link } from "react-router-dom";
 import { useRef } from "react";
+import api from "../../services/api";
 
 function Register() {
 	const nameRef = useRef();
 	const emailRef = useRef();
 	const passwordRef = useRef();
 
-	function handleSubmit(e) {
+	async function handleSubmit(e) {
+		e.preventDefault();
 		console.log(nameRef.current.value);
 		console.log(emailRef.current.value);
 		console.log(passwordRef.current.value);
-		e.preventDefault();
+
+		try {
+			await api.post("/user", {
+				name: nameRef.current.value,
+				email: emailRef.current.value,
+				password: passwordRef.current.value,
+				age: "1",
+			});
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	return (
